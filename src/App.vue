@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <h1 class="text-3xl font-bold underline text-red-400">Hello world!</h1>
-  </div>
+  <div><Form /></div>
 </template>
 <script>
-export default {};
+import Form from "./components/4step_form.vue";
+export default {
+  components: {
+    Form,
+  },
+};
 </script>
-<style lang=""></style>
+<style></style>
