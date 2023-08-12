@@ -1,12 +1,15 @@
 <template>
-  <div><Form /></div>
+  <div>
+    <VideoPlayer />
+  </div>
 </template>
+
 <script>
-import Form from "./components/4step_form.vue";
+import VideoPlayer from "./components/VideoPlayer.vue"; // Update the path based on your project structure
+
 export default {
   components: {
-    Form,
-  },
+    VideoPlayer
+  }
 };
 </script>
-<style></style>
