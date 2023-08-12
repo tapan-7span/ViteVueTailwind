@@ -40,6 +40,9 @@ export default {
       showOverlay: true,
     };
   },
+  mounted() {
+    this.$refs.videoElement.currentTime = 20;
+  },
   methods: {
     handleVideoClick() {
       if (this.showOverlay) {
