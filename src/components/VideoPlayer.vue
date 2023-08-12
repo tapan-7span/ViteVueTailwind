@@ -9,7 +9,7 @@
         autoplay
         muted
         disablepictureinpicture
-        controls
+        :controls="!showOverlay"
         controlslist="nodownload noplaybackrate"
         @click="handleVideoClick"
       >
@@ -53,6 +53,7 @@ export default {
     playVideo() {
       this.$refs.videoElement.currentTime = 0;
       this.$refs.videoElement.play();
+      this.$refs.videoElement.muted = false;
       this.showOverlay = false;
     },
   },
