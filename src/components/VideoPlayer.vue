@@ -1,33 +1,33 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <div class="relative">
+  <div
+    class="relative w-full h-screen flex justify-center items-center overflow-hidden"
+  >
+    <div class="w-[1200px] h-auto flex items-center justify-center shadow-2xl shadow-black">
       <video
-        ref="video"
-        class="w-full h-2/3"
-        loop
+        ref="videoElement"
+        class=""
         autoplay
-        disablePictureInPicture
+        muted
+        disablepictureinpicture
         controls
         controlslist="nodownload noplaybackrate"
+        @click="handleVideoClick"
       >
         <source :src="videoSource" type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
-      <button
-        @click="playVideo"
-        class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white w-full h-full transition-opacity duration-300"
-        v-if="!isPlaying"
+      <div
+        class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+        v-if="showOverlay"
       >
-        <div
-          class="rounded-full bg-gray-100 bg-opacity-20 hover:bg-opacity-50 flex items-center justify-center"
+        <button
+          class="text-white text-3xl focus:outline-none"
+          @click="playVideo"
         >
-          <div>
-            <svg class="w-28 h-28" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M6 4l10 6-10 6V4z"></path>
-            </svg>
-          </div>
-        </div>
-      </button>
+          <svg class="w-28 h-28" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M6 4l10 6-10 6V4z"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -36,30 +36,25 @@
 export default {
   data() {
     return {
-      isPlaying: false,
       videoSource: "https://dev-voliz.b-cdn.net/7Span-Intro.mp4",
+      showOverlay: true,
     };
   },
-  created() {
-    console.log("created");
-    setTimeout(() => {
-      this.playback();
-    }, 3000);
-  },
   methods: {
-    playVideo() {
-      console.log("Play Called");
-      this.isPlaying = true;
-      this.$refs.video.currentTime = 0; // Restart video from the beginning
-      this.$refs.video.play();
+    handleVideoClick() {
+      if (this.showOverlay) {
+        this.playVideo();
+      } else {
+        this.$refs.videoElement.paused
+          ? this.$refs.videoElement.play()
+          : this.$refs.videoElement.pause();
+      }
     },
-    playback() {
-      this.$refs.video.play();
+    playVideo() {
+      this.$refs.videoElement.currentTime = 0;
+      this.$refs.videoElement.play();
+      this.showOverlay = false;
     },
   },
 };
 </script>
-
-<style scoped>
-/* Add your Tailwind CSS classes or custom styles here */
-</style>
