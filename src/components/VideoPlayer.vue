@@ -1,8 +1,8 @@
 <template>
-  <div
-    class="relative w-full h-screen flex justify-center items-center overflow-hidden"
-  >
-    <div class="w-[1200px] h-auto flex items-center justify-center shadow-2xl shadow-black">
+  <div class="w-full h-screen flex justify-center items-center overflow-hidden">
+    <div
+      class="relative w-[1200px] h-auto flex items-center justify-center shadow-2xl shadow-black"
+    >
       <video
         ref="videoElement"
         class=""
@@ -16,7 +16,7 @@
         <source :src="videoSource" type="video/mp4" />
       </video>
       <div
-        class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+        class="absolute bg-black bg-opacity-50 flex justify-center items-center rounded-full"
         v-if="showOverlay"
       >
         <button
