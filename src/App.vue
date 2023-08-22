@@ -29,7 +29,6 @@ export default {
     },
     onSubmit(token) {
       console.log("reCAPTCHA challenge completed successfully!");
-      console.log("Token : ", token);
       // Perform additional actions here
     },
   },
@@ -37,10 +36,21 @@ export default {
     // Load the reCAPTCHA script asynchronously
     const script = document.createElement("script");
     script.src =
-      "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
+      "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit";
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
+
+    // Define the global function for reCAPTCHA to use
+    window.onRecaptchaLoad = this.onRecaptchaLoad;
+  },
+  methods: {
+    onRecaptchaLoad() {
+      grecaptcha.render("g-recaptcha", {
+        sitekey: "6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO",
+        callback: this.onSubmit,
+      });
+    },
   },
 };
 </script>
