@@ -36,7 +36,8 @@ export default {
   mounted() {
     // Load the reCAPTCHA script asynchronously
     const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js";
+    script.src =
+      "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
