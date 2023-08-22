@@ -2,6 +2,7 @@
   <div>
     <form @submit.prevent="submitForm">
       <button
+        ref="recaptchaButton"
         class="g-recaptcha"
         data-sitekey="6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO"
         data-callback="onSubmit"
@@ -17,26 +18,32 @@
 export default {
   methods: {
     onSubmit() {
-      grecaptcha.execute();
+      // Trigger the reCAPTCHA challenge programmatically
+      this.executeRecaptcha();
     },
-    submitForm() {
+    executeRecaptcha() {
+      grecaptcha.ready(() => {
+        grecaptcha
+          .execute("6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO", {
+            action: "submit",
+          })
+          .then((token) => {
+            this.submitForm(token);
+          });
+      });
+    },
+    submitForm(token) {
       // Your form submission logic goes here
-      // You can also include the reCAPTCHA token in your payload if needed
+      // Include the reCAPTCHA token in your payload if needed
+      console.log("reCAPTCHA challenge completed successfully!");
     },
   },
   mounted() {
     const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js";
+    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
-
-    grecaptcha.ready(() => {
-      grecaptcha.render("submit-button", {
-        sitekey: "6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO",
-        size: "invisible",
-      });
-    });
   },
 };
 </script>
