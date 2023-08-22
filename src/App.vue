@@ -1,8 +1,14 @@
 <template>
   <div>
-    <form>
-      <div id="recaptchaContainer"></div>
-      <button @click="triggerRecaptcha">Submit</button>
+    <form @submit.prevent="submitForm">
+      <button
+        class="g-recaptcha"
+        data-sitekey="6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO"
+        data-callback="onSubmit"
+        data-size="invisible"
+      >
+        Submit
+      </button>
     </form>
   </div>
 </template>
@@ -10,39 +16,27 @@
 <script>
 export default {
   methods: {
-    triggerRecaptcha() {
-      grecaptcha.ready(() => {
-        grecaptcha
-          .execute("6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO", {
-            action: "submit",
-          })
-          .then((token) => {
-            this.onSubmit(token);
-          });
-      });
+    onSubmit() {
+      grecaptcha.execute();
     },
-    onSubmit(token) {
-      console.log("reCAPTCHA challenge completed successfully!");
-      // Perform additional actions here
-    },
-    onRecaptchaLoad() {
-      grecaptcha.render("recaptchaContainer", {
-        sitekey: "6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO",
-        callback: this.onSubmit,
-      });
+    submitForm() {
+      // Your form submission logic goes here
+      // You can also include the reCAPTCHA token in your payload if needed
     },
   },
   mounted() {
-    // Load the reCAPTCHA script asynchronously
     const script = document.createElement("script");
-    script.src =
-      "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit";
+    script.src = "https://www.google.com/recaptcha/api.js";
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
 
-    // Define the global function for reCAPTCHA to use
-    window.onRecaptchaLoad = this.onRecaptchaLoad;
+    grecaptcha.ready(() => {
+      grecaptcha.render("submit-button", {
+        sitekey: "6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO",
+        size: "invisible",
+      });
+    });
   },
 };
 </script>
