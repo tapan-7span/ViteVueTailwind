@@ -4,7 +4,7 @@
       <button
         class="g-recaptcha"
         data-sitekey="6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO"
-        data-callback="onSubmit"
+        @click="triggerRecaptcha"
       >
         Submit
       </button>
@@ -16,8 +16,18 @@
 <script>
 export default {
   methods: {
+    triggerRecaptcha() {
+      grecaptcha.ready(() => {
+        grecaptcha
+          .execute("your_site_key", { action: "submit" })
+          .then((token) => {
+            this.onSubmit(token);
+          });
+      });
+    },
     onSubmit(token) {
       console.log("reCAPTCHA challenge completed successfully!");
+      // Perform additional actions here
     },
   },
   mounted() {
