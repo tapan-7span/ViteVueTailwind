@@ -1,14 +1,8 @@
 <template>
   <div>
     <form>
-      <button
-        class="g-recaptcha"
-        data-sitekey="6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO"
-        @click="triggerRecaptcha"
-      >
-        Submit
-      </button>
-      <br />
+      <div id="recaptchaContainer"></div>
+      <button @click="triggerRecaptcha">Submit</button>
     </form>
   </div>
 </template>
@@ -31,6 +25,12 @@ export default {
       console.log("reCAPTCHA challenge completed successfully!");
       // Perform additional actions here
     },
+    onRecaptchaLoad() {
+      grecaptcha.render("recaptchaContainer", {
+        sitekey: "6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO",
+        callback: this.onSubmit,
+      });
+    },
   },
   mounted() {
     // Load the reCAPTCHA script asynchronously
@@ -43,14 +43,6 @@ export default {
 
     // Define the global function for reCAPTCHA to use
     window.onRecaptchaLoad = this.onRecaptchaLoad;
-  },
-  methods: {
-    onRecaptchaLoad() {
-      grecaptcha.render("g-recaptcha", {
-        sitekey: "6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO",
-        callback: this.onSubmit,
-      });
-    },
   },
 };
 </script>
