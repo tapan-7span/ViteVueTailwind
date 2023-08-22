@@ -8,7 +8,6 @@
         class="g-recaptcha"
         data-sitekey="6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO"
         data-callback="onReCaptchaSuccess"
-        data-size="invisible"
       ></div>
 
       <button type="submit">Submit</button>
