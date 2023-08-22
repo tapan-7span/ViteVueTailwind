@@ -19,7 +19,9 @@ export default {
     triggerRecaptcha() {
       grecaptcha.ready(() => {
         grecaptcha
-          .execute("6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO", { action: "submit" })
+          .execute("6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO", {
+            action: "submit",
+          })
           .then((token) => {
             this.onSubmit(token);
           });
@@ -27,6 +29,7 @@ export default {
     },
     onSubmit(token) {
       console.log("reCAPTCHA challenge completed successfully!");
+      console.log("Token : ", token);
       // Perform additional actions here
     },
   },
