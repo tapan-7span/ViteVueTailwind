@@ -19,7 +19,7 @@ export default {
     triggerRecaptcha() {
       grecaptcha.ready(() => {
         grecaptcha
-          .execute("your_site_key", { action: "submit" })
+          .execute("6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO", { action: "submit" })
           .then((token) => {
             this.onSubmit(token);
           });
