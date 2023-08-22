@@ -1,11 +1,11 @@
 <template>
   <div>
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="onSubmit">
       <button
         ref="recaptchaButton"
         class="g-recaptcha"
         data-sitekey="6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO"
-        data-callback="onSubmit"
+        data-callback="submitForm"
         data-size="invisible"
       >
         Submit
