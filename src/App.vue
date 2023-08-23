@@ -30,7 +30,7 @@ export default {
     },
   },
   mounted() {
-    this.$nextTick(() => {
+    window.onload = () => {
       const recaptchaContainer = this.$refs.recaptcha;
       const widgetId = grecaptcha.render(recaptchaContainer, {
         sitekey: this.siteKey,
@@ -38,7 +38,7 @@ export default {
         callback: this.onSubmit,
       });
       this.$data.widgetId = widgetId;
-    });
+    };
   },
 };
 </script>
