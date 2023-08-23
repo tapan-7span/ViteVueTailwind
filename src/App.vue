@@ -19,6 +19,7 @@ export default {
   methods: {
     onSubmit(token) {
       alert("thanks " + this.name);
+      console.log(token);
     },
     validateForm() {
       if (!this.name) {
