@@ -1,15 +1,15 @@
 <template>
   <div>
-    <form>
-      Name: (required) <input v-model="name" />
+    <form @submit.prevent="validateForm">
+      Name: (required) <input v-model="name" required />
       <div
         id="recaptcha"
         class="g-recaptcha"
         :data-sitekey="siteKey"
-        :data-callback="onSubmit"
+        data-callback="onSubmit"
         data-size="invisible"
       ></div>
-      <button @click.prevent="validate">submit</button>
+      <button type="submit">submit</button>
     </form>
   </div>
 </template>
@@ -25,22 +25,27 @@ export default {
   methods: {
     onSubmit(token) {
       alert("thanks " + this.name);
-      console.log("token", token);
     },
-    validate() {
+    validateForm() {
       if (!this.name) {
         alert("You must add text to the required field");
       } else {
         grecaptcha.execute();
       }
     },
-    onload() {
-      var element = document.getElementById("submit");
-      element.onclick = this.validate;
-    },
   },
   mounted() {
-    this.onload();
+    this.$nextTick(() => {
+      grecaptcha.render("recaptcha", {
+        sitekey: this.siteKey,
+        size: "invisible",
+        callback: this.onSubmit,
+      });
+    });
   },
 };
 </script>
+
+<style>
+/* Add your CSS styles here */
+</style>
