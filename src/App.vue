@@ -2,13 +2,7 @@
   <div>
     <form @submit.prevent="validateForm">
       Name: (required) <input v-model="name" required />
-      <div
-        id="recaptcha"
-        class="g-recaptcha"
-        :data-sitekey="siteKey"
-        data-callback="onSubmit"
-        data-size="invisible"
-      ></div>
+      <div id="recaptcha" ref="recaptcha"></div>
       <button type="submit">submit</button>
     </form>
   </div>
@@ -36,11 +30,13 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      grecaptcha.render("recaptcha", {
+      const recaptchaContainer = this.$refs.recaptcha;
+      const widgetId = grecaptcha.render(recaptchaContainer, {
         sitekey: this.siteKey,
         size: "invisible",
         callback: this.onSubmit,
       });
+      this.$data.widgetId = widgetId;
     });
   },
 };
