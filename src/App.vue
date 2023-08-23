@@ -1,9 +1,15 @@
 <template>
   <div>
-    <form>
-      Name: (required) <input v-model="name" required>
-      <div class="g-recaptcha" data-sitekey="6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO" ref="recaptcha"></div>
-      <button type="submit" @click.prevent="submitForm">submit</button>
+    <form @submit.prevent="validate">
+      Name: (required) <input v-model="name" />
+      <div
+        id="recaptcha"
+        class="g-recaptcha"
+        :data-sitekey="recaptchaSiteKey"
+        :data-callback="onSubmit"
+        data-size="invisible"
+      ></div>
+      <button id="submit">submit</button>
     </form>
   </div>
 </template>
@@ -12,45 +18,40 @@
 export default {
   data() {
     return {
-      name: ''
+      name: "",
+      recaptchaSiteKey: "6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO", // Replace with your actual site key
     };
-  },
-  mounted() {
-    const self = this;
-    window.onloadCallback = function() {
-      grecaptcha.render(self.$refs.recaptcha, {
-        sitekey: '6Lf0iscnAAAAAPp6ZS__werzyBxCkFlLbvt_ZiiO',
-        size: 'invisible',
-        callback: self.onSubmit,
-        'error-callback': self.onError
-      });
-    };
-    const script = document.createElement('script');
-    script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
   },
   methods: {
-    validateForm() {
+    onSubmit(token) {
+      alert("thanks " + this.name);
+      console.log("token", token);
+    },
+    validate() {
       if (!this.name) {
-        alert('You must add text to the required field');
-        return false;
+        alert("You must add text to the required field");
       } else {
         grecaptcha.execute();
-        return true;
       }
     },
-    onSubmit(token) {
-      alert('thanks ' + this.name);
-    },
-    onError() {
-      alert('reCAPTCHA encountered an error. Please try again later.');
-    },
-    submitForm() {
-      if (this.validateForm()) {
-        // submit the form data here
-      }
-    }
-  }
+  },
+  mounted() {
+    const element = document.getElementById("submit");
+    element.addEventListener("click", this.validate);
+    this.$nextTick(() => {
+      const script = document.createElement("script");
+      script.src = "https://www.google.com/recaptcha/api.js";
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+      script.onload = () => {
+        grecaptcha.render("recaptcha", {
+          sitekey: this.recaptchaSiteKey,
+          callback: this.onSubmit,
+          size: "invisible",
+        });
+      };
+    });
+  },
 };
+</script>
