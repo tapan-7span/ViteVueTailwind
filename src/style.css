@@ -1,3 +1,175 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Loading More CSS  */
+.LoadMore {
+  font-size: 18px;
+  color: black;
+}
+/* Selection CSS  */
+.SelectionS {
+  font-size: 18px;
+  color: black;
+}
+/* Pagination CSS  */
+.Paginate {
+  width: 90%;
+  text-align: center;
+}
+.Paginate button {
+  color: black;
+  font-size: 20px;
+  padding: 7px;
+}
+.Paginate button:active {
+  font-size: 30px;
+}
+/* V List Counter CSS */
+.ListCounters {
+  width: 90%;
+  text-align: center;
+  padding-top: 2rem;
+  color: black;
+  font-size: size 1.25rem;
+  line-height: 1.75rem;
+}
+/* V List Load More CSS */
+.LoadMoreBtn {
+  width: 90%;
+  text-align: center;
+  font-size: 17px;
+}
+.LoadMoreBtn button {
+  color: rgb(158, 155, 244);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: rgb(255, 255, 255);
+  margin: 2%;
+}
+.LoadMoreBtn button:hover {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: rgb(26, 10, 253);
+  margin: 2%;
+}
+.LoadMoreBtn button:active {
+  font-size: 17px;
+  border-color: rgb(254, 167, 167);
+}
+/* V Go To CSS*/
+.GoToText {
+  font-size: 17px;
+  color: black !important;
+}
+.GoTo {
+  border-radius: 10px;
+}
+.GoTo select {
+  border-radius: 8px;
+  padding: 4px;
+  margin: 2%;
+}
+/* V List Search CSS */
+.SearchS {
+  font-size: 18px;
+  color: black;
+}
+.VListSearch {
+  margin: 2px;
+  padding: 10px;
+  font-size: 19px;
+}
+.VListSearch input {
+  border-radius: 10px;
+  padding: 3px;
+}
+/* Attributes Design CSS */
+.ListAttribute {
+  color: black;
+  padding: 8px;
+  line-height: 18px;
+}
+.ListAttribute span {
+  padding: 8px;
+  font-size: 19px;
+}
+.ListAttribute input {
+  padding: 1px;
+  font-size: 19px;
+  margin-right: 2%;
+  border-radius: 4px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+.ListAttribute label {
+  cursor: pointer;
+  border-width: 1px;
+  border-radius: 10px;
+  padding: 6px;
+  border-color: rgb(132, 132, 132);
+  margin: 1px;
+}
+.ListAttribute label:hover {
+  cursor: pointer;
+  border-width: 1px;
+  border-radius: 10px;
+  padding: 6px;
+  border-color: rgb(85, 0, 255);
+}
+/* Table Design CSS*/
+
+.ListTable {
+  width: 95%;
+  margin-top: 5px;
+  font-size: 19px;
+  border-collapse: collapse;
+  border: #000000;
+}
+.ListTable tr {
+  cursor: pointer;
+  text-align: center;
+}
+.ListTable button {
+  cursor: pointer;
+  border-radius: 8px;
+  border-width: 1px;
+  padding: 2px;
+  border-color: rgb(85, 85, 85);
+  margin: 2%;
+  font-size: 14px;
+}
+.ListTable button {
+  cursor: pointer;
+  border-radius: 8px;
+  border-width: 1px;
+  padding: 2px;
+  border-color: rgb(85, 85, 85);
+  margin: 2%;
+  font-size: 14px;
+}
+.ListTable th {
+  color: rgb(255, 255, 255);
+  background-color: rgb(97, 97, 97) !important;
+}
+.ListTable tr:nth-child(even) {
+  background-color: rgb(230, 230, 230);
+}
+.ListTable tr:nth-child(odd) {
+  background-color: rgb(209, 209, 209);
+}
+.ListTable tr:hover {
+  color: black;
+  background-color: rgb(185, 174, 116);
+}
+.ListTable tr:hover td:nth-child(3),
+.ListTable tr td,
+th {
+  padding: 5px 0px;
+}
