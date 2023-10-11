@@ -3,7 +3,7 @@ import "./style.css";
 import App from "./App.vue";
 // import VList from "@7span/vue-list-v3";
 import axios from "axios";
-import qs from "qs";
+// import qs from "qs";
 
 const app = createApp(App);
 // app.use(VList, {
